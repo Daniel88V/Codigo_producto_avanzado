@@ -18,3 +18,15 @@ class iAlterarProducto:
         pass
     def editar(self, objetivo, clave):
         pass
+class BusquedaSecuencial(iBuscador):
+    def buscar(self, registro, clave):
+        for cosa in registro.values():
+            if cosa.codigo.upper() == clave.upper():
+                return cosa
+        return None
+class AlterarProducto(iAlterarProducto):
+    def eliminar(self, registro, clave):
+        if clave.upper() in registro:
+            del registro[clave.upper()]
+            return True
+        return False
