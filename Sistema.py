@@ -145,7 +145,7 @@ class GestionProductos:
             return self.alterar.editar(producto, datos)
         return False
 class Visualizacion:
-    def __int__(self, gestor: GestionProductos, validar: ValidarDatosProductos, ordenar: OrdenadorProductos):
+    def __init__(self, gestor: GestionProductos, validar: ValidarDatosProductos, ordenar: OrdenadorProductos):
         self.gestor = gestor
         self.validador = validar
         self.ordenar = ordenar
