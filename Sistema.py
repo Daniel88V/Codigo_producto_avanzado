@@ -67,3 +67,18 @@ class OrdenadorProductos:
         iguales = [x for x in lista if x.stock == pivote.stock]
         mayores = [x for x in lista[1:] if x.stock > pivote.stock]
         return self.quicks_stock(menores) + iguales + self.quicks_stock(mayores)
+class ValidarDatosProductos:
+    @staticmethod
+    def validar_datosyagegar(productos_en_existencia):
+        while True:
+            codigo = input("Ingrese el código del producto: ").upper()
+            if not codigo:
+                print("Advertencia. Campo requerido, por favor ingrese el código del producto")
+            elif codigo in productos_en_existencia:
+                print("Error. Este producto ya existe")
+            else:
+                break
+        while True:
+            nombre = input("Ingrese el nombre del producto: ")
+            if not nombre:
+                print("Advertencia. Campo requerido, por favor ingrese el nombre del producto")
