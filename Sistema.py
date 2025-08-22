@@ -33,3 +33,5 @@ class AlterarProducto(iAlterarProducto):
     def editar(self, producto, dato):
         producto.precio = dato["precio"]
         producto.stock = dato["stock"]
+        return True
+
