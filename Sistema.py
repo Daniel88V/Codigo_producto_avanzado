@@ -149,6 +149,31 @@ class Visualizacion:
         self.gestor = gestor
         self.validador = validador
         self.ordenar = ordenar
+    def menu(self):
+        while True:
+            print("======MENÚ PRINCIPAL======")
+            print("1. Agregar productos")
+            print("2. Listado de productos")
+            print("3. Buscar productos")
+            print("4. Editar producto")
+            print("5. Salir")
+            try:
+                opcion = input("Ingrese una opción: ")
+                if opcion == "1":
+                    self.agregar_producto()
+                elif opcion == "2":
+                    self.listado()
+                elif opcion == "3":
+                    self.buscar_producto()
+                elif opcion == "4":
+                    self.editar_producto()
+                elif opcion == "5":
+                    print("Saliendo del programa...")
+                    exit()
+                else:
+                    print("Opción no valida, intente de nuevo")
+            except ValueError:
+                print("Error. Seleccione un número dentro del rango 1-5")
     def agregar_producto(self):
         while True:
             try:
@@ -220,3 +245,11 @@ class Visualizacion:
                 print("\t Producto actualizado correctamente")
             else:
                 print("\t Error al editar el producto")
+if __name__ == "__main__":
+    buscador = BusquedaSecuencial()
+    modificador = AlterarProducto()
+    validador = ValidarDatosProductos()
+    ordenador = OrdenadorProductos()
+    gestionador = GestionProductos(buscador, modificador)
+    menu = Visualizacion(gestionador, validador, ordenador)
+    menu.menu()
