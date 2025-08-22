@@ -34,4 +34,17 @@ class AlterarProducto(iAlterarProducto):
         producto.precio = dato["precio"]
         producto.stock = dato["stock"]
         return True
-
+class OrdenadorProductos:
+    def quicks_nombre(self, lista):
+        if len(lista) <= 1:
+            return lista
+        pivote = lista[0]
+        menores = [x for x in lista[1:] if x.nombre.upper() < pivote.nombre.upper()]
+        iguales = [x for x in lista if x.nombre.upper() == pivote.nombre.upper()]
+        mayores = [x for x in lista[1:] if x.nombre.upper() > pivote.nombre.upper()]
+        return self.quicks_nombre(menores) + iguales + self.quicks_nombre(mayores)
+    def quicks_preciomen(self, lista):
+        if len(lista) <= 1:
+            return lista
+        pivote = lista[0]
+        menores = [x for x in lista[1:] if x.precio < pivote.precio]
