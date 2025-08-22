@@ -48,3 +48,14 @@ class OrdenadorProductos:
             return lista
         pivote = lista[0]
         menores = [x for x in lista[1:] if x.precio < pivote.precio]
+        iguales = [x for x in lista if x.precio == pivote.precio]
+        mayores = [x for x in lista[1:] if x.precio > pivote.precio]
+        return self.quicks_preciomen(menores) + iguales + self.quicks_preciomen(mayores)
+    def quicks_preciomay(self, lista):
+        if len(lista) <= 1:
+            return lista
+        pivote = lista[0]
+        menores = [x for x in lista[1:] if x.precio < pivote.precio]
+        iguales = [x for x in lista if x.precio == pivote.precio]
+        mayores = [x for x in lista[1:] if x.precio > pivote.precio]
+        return self.quicks_preciomen(mayores) + iguales + self.quicks_preciomen(menores)
