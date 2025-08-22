@@ -129,9 +129,9 @@ class ValidarDatosProductos:
             except ValueError:
                 print("Error. El precio y el stock deben de ser números")
 class GestionProductos:
-    def __init__(self, buscador: iBuscador, alterar: iAlterarProducto):
+    def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
-        self.buscador = buscador
+        self.buscador = buscadar
         self.alterar = alterar
     def agregar(self, datosp):
         self.productos[datosp['codigo']] = Productos(**datosp)
