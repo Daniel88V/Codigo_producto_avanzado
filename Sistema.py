@@ -165,3 +165,19 @@ class Visualizacion:
                             break
             except ValueError:
                 print("Error. Ingrese un valor númerico valido")
+    def listado(self):
+        if not self.gestor.productos:
+            print("No se han econtrado productos")
+            return
+        print("\n Menú listado de productos")
+        print("1. Ordenado por nombre")
+        print("2. Ordenado por precio")
+        print("3. Ordenado por stock")
+        print("4. Regresar al menu principal")
+        try:
+            eleccion = int(input("Seleccione una opción: "))
+            lista_productos = list(self.gestor.productos.values())
+            if eleccion == 1:
+                print("\t Productos ordenados por nombre")
+                lista_productos = self.ordenar.quicks_nombre(lista_productos)
+            elif eleccion == 2:
