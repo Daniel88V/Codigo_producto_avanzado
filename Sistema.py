@@ -206,3 +206,17 @@ class Visualizacion:
             print(encontrado.mostrar_producto())
         else:
             print("Producto no encontrado")
+    def editar_producto(self):
+        codigo = input("Ingrese el código del producto a editar: ")
+        encontrado = self.gestor.buscar(codigo)
+        if not encontrado:
+            print("\tProducto no encontrado")
+            return
+        print("Producto actual: ")
+        print(encontrado.mostrar_producto())
+        datos_nuevos = self.validador.validar_datosamodificar(encontrado)
+        if datos_nuevos:
+            if self.gestor.actualizar(codigo, datos_nuevos):
+                print("\t Producto actualizado correctamente")
+            else:
+                print("\t Error al editar el producto")
