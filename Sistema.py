@@ -59,3 +59,11 @@ class OrdenadorProductos:
         iguales = [x for x in lista if x.precio == pivote.precio]
         mayores = [x for x in lista[1:] if x.precio > pivote.precio]
         return self.quicks_preciomen(mayores) + iguales + self.quicks_preciomen(menores)
+    def quicks_stock(self, lista):
+        if len(lista) <= 1:
+            return lista
+        pivote = lista[0]
+        menores = [x for x in lista[1:] if x.stock < pivote.stock]
+        iguales = [x for x in lista if x.stock == pivote.stock]
+        mayores = [x for x in lista[1:] if x.stock > pivote.stock]
+        return self.quicks_stock(menores) + iguales + self.quicks_stock(mayores)
