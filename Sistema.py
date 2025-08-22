@@ -128,3 +128,24 @@ class ValidarDatosProductos:
                 return {'precio': nuevo_precio, 'stock': nuevo_stock}
             except ValueError:
                 print("Error. El precio y el stock deben de ser números")
+class GestionProductos:
+    def __init__(self, buscador: iBuscador, alterar: iAlterarProducto):
+        self.productos = {}
+        self.buscador = buscador
+        self.alterar = alterar
+    def agregar(self, datosp):
+        self.productos[datosp['codigo']] = Productos(**datosp)
+    def buscar(self, codigo):
+        return self.buscador.buscar(self.productos, codigo)
+    def eliminar(self, codigo):
+        return self.alterar.eliminar(self.productos, codigo)
+    def actualizar(self, codigo, datos):
+        producto = self.buscar(codigo)
+        if producto:
+            return self.alterar.editar(producto, datos)
+        return False
+class Visualizacion:
+    def __int__(self, gestor: GestionProductos, validador: ValidarDatosProductos, ordenar: OrdenadorProductos):
+        self.gestor = gestor
+        self.validador = validador
+        self.ordenar = ordenar
