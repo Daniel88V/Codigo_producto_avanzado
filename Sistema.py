@@ -82,3 +82,34 @@ class ValidarDatosProductos:
             nombre = input("Ingrese el nombre del producto: ")
             if not nombre:
                 print("Advertencia. Campo requerido, por favor ingrese el nombre del producto")
+            else:
+                break
+        while True:
+            categoria = input("Ingrese la categoria del producto: ")
+            if not categoria:
+                print("Advertencia. Campo requerido, por favor ingrese la categoria")
+            else:
+                break
+        while True:
+            try:
+                precio = float(input("Ingrese el precio del producto: "))
+                if not precio:
+                    print("Advertencia. Campo requerido, por favor ingrese el precio")
+                elif precio <= 0:
+                    print("Advertencia. El precio del producto no puede ser negativo o 0")
+                else:
+                    break
+            except ValueError:
+                print("Error. Ingrese un valor númerico valido")
+        while True:
+            try:
+                stock = int(input("Ingrese el stock del producto: "))
+                if not stock:
+                    print("Advertencia. Campo requerido, por favor ingrese el stock")
+                elif stock <= 0:
+                    print("Advertencia. El stock no puede ser negativo o 0")
+                else:
+                    break
+            except ValueError:
+                print("Error. Ingrese un valor númerico valido")
+        return {'código': codigo, 'nombre': nombre, 'categoria': categoria, 'precio': precio, 'stock': stock}
