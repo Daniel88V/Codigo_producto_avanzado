@@ -171,9 +171,10 @@ class Visualizacion:
             return
         print("\n Menú listado de productos")
         print("1. Ordenado por nombre")
-        print("2. Ordenado por precio")
-        print("3. Ordenado por stock")
-        print("4. Regresar al menu principal")
+        print("2. Ordenado por precio (menor a mayor)")
+        print("3. Ordenado por precio (mayor a menor)")
+        print("4. Ordenado por stock")
+        print("5. Regresar al menu principal")
         try:
             eleccion = int(input("Seleccione una opción: "))
             lista_productos = list(self.gestor.productos.values())
@@ -181,3 +182,19 @@ class Visualizacion:
                 print("\t Productos ordenados por nombre")
                 lista_productos = self.ordenar.quicks_nombre(lista_productos)
             elif eleccion == 2:
+                print("\t Productos ordenados por precio (menor a mayor)")
+                lista_productos = self.ordenar.quicks_preciomen(lista_productos)
+            elif eleccion == 3:
+                print("\t Productos ordenados por precio (mayor a menor)")
+                lista_productos = self.ordenar.quicks_preciomay(lista_productos)
+            elif eleccion == 4:
+                print("\t Productos ordenados por stock")
+                lista_productos = self.ordenar.quicks_stock(lista_productos)
+            elif eleccion == 5:
+                return
+            else:
+                print("Opción no valida")
+            for i, producto in enumerate(lista_productos, start = 1):
+                print(f"{i}. {producto.mostrar_producto()}")
+        except ValueError:
+            print("Error. Debes ingresar un número del 1 - 5")
