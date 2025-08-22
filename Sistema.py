@@ -149,3 +149,19 @@ class Visualizacion:
         self.gestor = gestor
         self.validador = validador
         self.ordenar = ordenar
+    def agregar_producto(self):
+        while True:
+            try:
+                cant = int(input("\tIngrese la cantidad de productos que desea agregar: "))
+                if not cant:
+                    print("Advertemcia. Para continuar por favor ingrese un valor")
+                else:
+                    for i in range(cant):
+                        print(f"Producto #{i + 1}:")
+                        datos = self.validador.validar_datosyagegar(self.gestor.productos)
+                        if datos:
+                            self.gestor.agregar(datos)
+                            print("Producto(s) agregado(s) correctamente")
+                            break
+            except ValueError:
+                print("Error. Ingrese un valor númerico valido")
