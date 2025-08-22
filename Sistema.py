@@ -58,7 +58,7 @@ class OrdenadorProductos:
         menores = [x for x in lista[1:] if x.precio < pivote.precio]
         iguales = [x for x in lista if x.precio == pivote.precio]
         mayores = [x for x in lista[1:] if x.precio > pivote.precio]
-        return self.quicks_preciomen(mayores) + iguales + self.quicks_preciomen(menores)
+        return self.quicks_preciomay(mayores) + iguales + self.quicks_preciomay(menores)
     def quicks_stock(self, lista):
         if len(lista) <= 1:
             return lista
@@ -112,7 +112,7 @@ class ValidarDatosProductos:
                     break
             except ValueError:
                 print("Error. Ingrese un valor númerico valido")
-        return {'código': codigo, 'nombre': nombre, 'categoria': categoria, 'precio': precio, 'stock': stock}
+        return {'codigo': codigo, 'nombre': nombre, 'categoria': categoria, 'precio': precio, 'stock': stock}
     @staticmethod
     def validar_datosamodificar(existencia):
         print("Ingrese los nuevos datos del producto (deje en blanco si no desea cambiarlo): ")
@@ -187,7 +187,6 @@ class Visualizacion:
                         if datos:
                             self.gestor.agregar(datos)
                             print("Producto(s) agregado(s) correctamente")
-                            break
             except ValueError:
                 print("Error. Ingrese un valor númerico valido")
     def listado(self):
