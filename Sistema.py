@@ -16,7 +16,7 @@ class iAlterarProducto:
     @abstractmethod
     def eliminar(self, registro, clave):
         pass
-    def editar(self, objetivo, clave):
+    def editar(self, objetivo, dato):
         pass
 class BusquedaSecuencial(iBuscador):
     def buscar(self, registro, clave):
@@ -30,3 +30,6 @@ class AlterarProducto(iAlterarProducto):
             del registro[clave.upper()]
             return True
         return False
+    def editar(self, producto, dato):
+        producto.precio = dato["precio"]
+        producto.stock = dato["stock"]
