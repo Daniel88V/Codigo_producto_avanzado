@@ -113,3 +113,18 @@ class ValidarDatosProductos:
             except ValueError:
                 print("Error. Ingrese un valor númerico valido")
         return {'código': codigo, 'nombre': nombre, 'categoria': categoria, 'precio': precio, 'stock': stock}
+    @staticmethod
+    def validar_datosamodificar(existencia):
+        print("Ingrese los nuevos datos del producto (deje en blanco si no desea cambiarlo): ")
+        while True:
+            try:
+                precio = input(f"Ingrese el nuevo precio del producto {existencia.precio}: ")
+                stock = input(f"Ingrese el nuevo stock del producto {existencia.stock}: ")
+                nuevo_precio = float(precio) if precio else existencia.precio
+                nuevo_stock = int(stock) if stock else existencia.stock
+                if nuevo_precio <= 0 or nuevo_stock <= 0:
+                    print("Advertencia. El precio o el stock no pueden ser valores negativos o 0")
+                    return None
+                return {'precio': nuevo_precio, 'stock': nuevo_stock}
+            except ValueError:
+                print("Error. El precio y el stock deben de ser números")
