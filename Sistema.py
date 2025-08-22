@@ -198,3 +198,11 @@ class Visualizacion:
                 print(f"{i}. {producto.mostrar_producto()}")
         except ValueError:
             print("Error. Debes ingresar un número del 1 - 5")
+    def buscar_producto(self):
+        codigo = input("Ingrese el codigo del producto qie desea buscar: ")
+        encontrado = self.gestor.buscar(codigo)
+        if encontrado:
+            print("\t Producto encontrado")
+            print(encontrado.mostrar_producto())
+        else:
+            print("Producto no encontrado")
