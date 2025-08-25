@@ -252,3 +252,68 @@ if __name__ == "__main__":
     gestionador = GestionProductos(buscador, modificador)
     menu = Visualizacion(gestionador, validador, ordenador)
     menu.menu()
+"""
+class Categorias:
+    def __init__(self, codigo, nombre):
+        self.codigo = codigo
+        self.nombre = nombre
+    def mostrar_categoria(self):
+        return f"Código: {self.codigo} | Categoria: {self.nombre}"
+class Clientes:
+    def __init__(self, NIT_Cliente, nombre, direccion, telefono, correo):
+        self.NITC = NIT_Cliente
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        self.correo = correo
+    def mostrar_cliente(self):
+        return f"NIT: {self.NITC} | Nombre: {self.nombre} | Dirección: {self.direccion} | Correo: {self.correo}"
+class Proveedores:
+    def __init__(self, NIT_Proveedor, nombre, direccion, telefono, correo, empresa):
+        self.NITP = NIT_Proveedor
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        self.correo = correo
+        self.empresa = empresa
+    def mostrar_proveedor(self):
+        return f"NIT: {self.NITP}
+class Empleados:
+    def __init__(self, ID_Empleado, nombre, direccion, telefono, correo, puesto):
+        self.ID_Empleado = ID_Empleado
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        self.correo = correo
+        self.puesto = puesto
+class Ventas:
+    def __init__(self, ID_Venta, fecha, ID_empleado, NIT_Cliente, total):
+        self.ID_Venta = ID_Venta
+        self.fecha = fecha
+        self.ID_empleado = ID_empleado
+        self.NIT_Cliente = NIT_Cliente
+        self.total = total
+class DetalleVentas:
+    def __init__(self, ID_DetalleVentas, ID_Venta, cantidad, ID_Producto, subtotal, stock):
+        self.ID_DetalleVentas = ID_DetalleVentas
+        self.ID_Venta = ID_Venta
+        self.cantidad = cantidad
+        self.ID_Producto = ID_Producto
+        self.subtotal = subtotal
+        self.stock = stock
+class Compras:
+    def __init__(self, ID_Compra, Fecha_Ingreso, ID_Empleado, NIT_Proveedor, total):
+        self.ID_Compra = ID_Compra
+        self.Fecha_Ingreso = Fecha_Ingreso
+        self.ID_Empleado = ID_Empleado
+        self.NIT_Proveedor = NIT_Proveedor
+        self.total = total
+class DetalleCompras:
+    def __init__(self, ID_DetalleCompra, ID_Venta, cantidad, ID_Producto, subtotal, Fecha_Caducidad):
+        self.ID_DetalleCompra = ID_DetalleCompra
+        self.ID_Compra = ID_Compra
+        self.cantidad = cantidad
+        self.ID_Producto = ID_Producto
+        self.subtotal = subtotal
+        self.Fecha_Caducidad = Fecha_Caducidad
+"""
