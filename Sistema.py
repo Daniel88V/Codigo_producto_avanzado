@@ -205,7 +205,7 @@ class Visualizacion:
             if opcion == "1":
                 self.agregar_categoria()
             elif opcion == "2":
-                self.listado()
+                self.listadoC()
             elif opcion == "3":
                 print("Regresando...")
                 break
@@ -215,6 +215,12 @@ class Visualizacion:
         datos = self.validador.validar_datoscategoria(self.gestor.categorias)
         self.gestor.agregar_categoria(datos)
         print("Categoria agregada correctamente")
+    def listadoC(self):
+        if not self.gestor.categorias:
+            print("No se han encontrado categorias. Por favor primero ingrese categorias")
+            return
+        for categoria in self.gestor.categorias.values():
+            print(categoria.mostrar_categoria())
     def agregar_producto(self):
         while True:
             try:
