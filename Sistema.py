@@ -6,7 +6,7 @@ class Categorias:
     def mostrar_categoria(self):
         return f"Código: {self.ID} | Nombre: {self.nombre}"
 class Productos:
-    def __init__(self, codigo,nombre,categoria,precio,stock):
+    def __init__(self, codigo, nombre, categoria, precio, stock):
         self.codigo = codigo
         self.nombre = nombre
         self.categoria = categoria
@@ -130,7 +130,7 @@ class ValidarDatosProductos:
                 stock = int(input("Ingrese el stock del producto: "))
                 if not stock:
                     print("Advertencia. Campo requerido, por favor ingrese el stock")
-                elif stock <= 0:
+                elif stock < 0:
                     print("Advertencia. El stock no puede ser negativo o 0")
                 else:
                     break
@@ -146,7 +146,7 @@ class ValidarDatosProductos:
                 stock = input(f"Ingrese el nuevo stock del producto {existencia.stock}: ")
                 nuevo_precio = float(precio) if precio else existencia.precio
                 nuevo_stock = int(stock) if stock else existencia.stock
-                if nuevo_precio <= 0 or nuevo_stock <= 0:
+                if nuevo_precio <= 0 or nuevo_stock < 0:
                     print("Advertencia. El precio o el stock no pueden ser valores negativos o 0")
                     return None
                 return {'precio': nuevo_precio, 'stock': nuevo_stock}
@@ -161,12 +161,8 @@ class GestionProductos:
     def agregar_categoria(self, datos):
         self.categorias[datos['ID']] = Categorias(**datos)
     def agregar_producto(self, datosp):
-        if datosp['categoria'] not in self.categorias:
-            print("Categoria inexistente. Por favor ingrese la categoria primero")
-            return False
         self.productos[datosp['codigo']] = Productos(**datosp)
         print("Producto agregado correctamente")
-        return True
     def buscar_producto(self, codigo):
         return self.buscador.buscar(self.productos, codigo)
     def eliminar_producto(self, codigo):
@@ -184,28 +180,41 @@ class Visualizacion:
     def menu(self):
         while True:
             print("======MENÚ PRINCIPAL======")
-            print("1. Agregar productos")
-            print("2. Listado de productos")
-            print("3. Buscar productos")
-            print("4. Editar producto")
-            print("5. Salir")
+            print("1. Gestionar categorias")
+            print("2. Gestionar productos")
+            print("3. Salir")
             try:
                 opcion = input("Ingrese una opción: ")
                 if opcion == "1":
-                    self.agregar_producto()
+                    self.menu_categorias()
                 elif opcion == "2":
                     self.listado()
                 elif opcion == "3":
                     self.buscar_producto()
-                elif opcion == "4":
-                    self.editar_producto()
-                elif opcion == "5":
-                    print("Saliendo del programa...")
-                    exit()
                 else:
                     print("Opción no valida, intente de nuevo")
             except ValueError:
                 print("Error. Seleccione un número dentro del rango 1-5")
+    def menu_categorias(self):
+        while True:
+            print("------Menú categorias------")
+            print("1. Agregar categorias")
+            print("2. Listar categorias")
+            print("3. Salir")
+            opcion = input("Seleccione una opción: ")
+            if opcion == "1":
+                self.agregar_categoria()
+            elif opcion == "2":
+                self.listado()
+            elif opcion == "3":
+                print("Regresando...")
+                break
+            else:
+                print("Opcion no valida, intente de nuevo")
+    def agregar_categoria(self):
+        datos = self.validador.validar_datoscategoria(self.gestor.categorias)
+        self.gestor.agregar_categoria(datos)
+        print("Categoria agregada correctamente")
     def agregar_producto(self):
         while True:
             try:
