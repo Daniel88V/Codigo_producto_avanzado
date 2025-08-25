@@ -76,12 +76,12 @@ class OrdenadorProductos:
         return self.quicks_stock(menores) + iguales + self.quicks_stock(mayores)
 class ValidarDatosProductos:
     @staticmethod
-    def validar_datoscategoria(Categorias_existentes):
+    def validar_datoscategoria(categorias_existentes):
         while True:
             codigo = input("Ingrese el código de la categoria: ").upper()
             if not codigo:
                 print("Advertencia. Campo requerido, por favor ingrese el código de la categoria")
-            elif codigo in Categorias_existentes:
+            elif codigo in categorias_existentes:
                 print("Categoria ya existente. Intente de nuevo")
             else:
                 break
@@ -158,14 +158,21 @@ class GestionProductos:
         self.categorias = {}
         self.buscador = buscadar
         self.alterar = alterar
-    def agregar(self, datosp):
+    def agregar_categoria(self, datos):
+        self.categorias[datos['ID']] = Categorias(**datos)
+    def agregar_producto(self, datosp):
+        if datosp['categoria'] not in self.categorias:
+            print("Categoria inexistente. Por favor ingrese la categoria primero")
+            return False
         self.productos[datosp['codigo']] = Productos(**datosp)
-    def buscar(self, codigo):
+        print("Producto agregado correctamente")
+        return True
+    def buscar_producto(self, codigo):
         return self.buscador.buscar(self.productos, codigo)
-    def eliminar(self, codigo):
+    def eliminar_producto(self, codigo):
         return self.alterar.eliminar(self.productos, codigo)
-    def actualizar(self, codigo, datos):
-        producto = self.buscar(codigo)
+    def actualizar_producto(self, codigo, datos):
+        producto = self.buscar_producto(codigo)
         if producto:
             return self.alterar.editar(producto, datos)
         return False
@@ -210,7 +217,7 @@ class Visualizacion:
                         print(f"Producto #{i + 1}:")
                         datos = self.validador.validar_datosyagegar(self.gestor.productos)
                         if datos:
-                            self.gestor.agregar(datos)
+                            self.gestor.agregar_producto(datos)
                             print("Producto(s) agregado(s) correctamente")
             except ValueError:
                 print("Error. Ingrese un valor númerico valido")
@@ -249,7 +256,7 @@ class Visualizacion:
             print("Error. Debes ingresar un número del 1 - 5")
     def buscar_producto(self):
         codigo = input("Ingrese el codigo del producto qie desea buscar: ")
-        encontrado = self.gestor.buscar(codigo)
+        encontrado = self.gestor.buscar_producto(codigo)
         if encontrado:
             print("\t Producto encontrado")
             print(encontrado.mostrar_producto())
@@ -257,7 +264,7 @@ class Visualizacion:
             print("Producto no encontrado")
     def editar_producto(self):
         codigo = input("Ingrese el código del producto a editar: ")
-        encontrado = self.gestor.buscar(codigo)
+        encontrado = self.gestor.buscar_producto(codigo)
         if not encontrado:
             print("\tProducto no encontrado")
             return
@@ -265,7 +272,7 @@ class Visualizacion:
         print(encontrado.mostrar_producto())
         datos_nuevos = self.validador.validar_datosamodificar(encontrado)
         if datos_nuevos:
-            if self.gestor.actualizar(codigo, datos_nuevos):
+            if self.gestor.actualizar_producto(codigo, datos_nuevos):
                 print("\t Producto actualizado correctamente")
             else:
                 print("\t Error al editar el producto")
