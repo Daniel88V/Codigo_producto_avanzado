@@ -3,7 +3,7 @@ class Categorias:
     def __init__(self, ID, nombre):
         self.ID = ID
         self.nombre = nombre
-    def mostrar(self):
+    def mostrar_categoria(self):
         return f"Código: {self.ID} | Nombre: {self.nombre}"
 class Productos:
     def __init__(self, codigo,nombre,categoria,precio,stock):
