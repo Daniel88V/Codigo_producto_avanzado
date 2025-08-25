@@ -1,4 +1,10 @@
 from abc import ABC, abstractmethod
+class Categorias:
+    def __init__(self, ID, nombre):
+        self.ID = ID
+        self.nombre = nombre
+    def mostrar(self):
+        return f"Código: {self.ID} | Nombre: {self.nombre}"
 class Productos:
     def __init__(self, codigo,nombre,categoria,precio,stock):
         self.codigo = codigo
@@ -252,7 +258,3 @@ if __name__ == "__main__":
     gestionador = GestionProductos(buscador, modificador)
     menu = Visualizacion(gestionador, validador, ordenador)
     menu.menu()
-"""
-Lo acabo de subir y ya lo borro, pero para la clase del viernes ya lo tenia hecho
-Lo borro ahorita porque voy a continuar y no solo dejarlo en comentario
-"""
