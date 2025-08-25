@@ -18,10 +18,11 @@ class iBuscador(ABC):
     @abstractmethod
     def buscar(self, registro, clave):
         pass
-class iAlterarProducto:
+class iAlterarProducto(ABC):
     @abstractmethod
     def eliminar(self, registro, clave):
         pass
+    @abstractmethod
     def editar(self, objetivo, dato):
         pass
 class BusquedaSecuencial(iBuscador):
@@ -75,7 +76,24 @@ class OrdenadorProductos:
         return self.quicks_stock(menores) + iguales + self.quicks_stock(mayores)
 class ValidarDatosProductos:
     @staticmethod
-    def validar_datosyagegar(productos_en_existencia):
+    def validar_datoscategoria(Categorias_existentes):
+        while True:
+            codigo = input("Ingrese el código de la categoria: ").upper()
+            if not codigo:
+                print("Advertencia. Campo requerido, por favor ingrese el código de la categoria")
+            elif codigo in Categorias_existentes:
+                print("Categoria ya existente. Intente de nuevo")
+            else:
+                break
+        while True:
+            nombre = input("Ingrese el nombre de la categoria: ").upper()
+            if not nombre:
+                print("Advertencia. Campo requerido, por favor ingrese el nombre de la categoria")
+            else:
+                break
+        return {'ID': codigo, 'Nombre': nombre}
+    @staticmethod
+    def validar_datosyagegar(productos_en_existencia, categorias_existentes):
         while True:
             codigo = input("Ingrese el código del producto: ").upper()
             if not codigo:
@@ -91,9 +109,9 @@ class ValidarDatosProductos:
             else:
                 break
         while True:
-            categoria = input("Ingrese la categoria del producto: ")
-            if not categoria:
-                print("Advertencia. Campo requerido, por favor ingrese la categoria")
+            categoria_codigo = input("Ingrese el código de la categoria del producto: ")
+            if categoria_codigo not in categorias_existentes:
+                print("Error. Categoria inexistente, por favor agreguela")
             else:
                 break
         while True:
@@ -118,7 +136,7 @@ class ValidarDatosProductos:
                     break
             except ValueError:
                 print("Error. Ingrese un valor númerico valido")
-        return {'codigo': codigo, 'nombre': nombre, 'categoria': categoria, 'precio': precio, 'stock': stock}
+        return {'codigo': codigo, 'nombre': nombre, 'categoria': categoria_codigo, 'precio': precio, 'stock': stock}
     @staticmethod
     def validar_datosamodificar(existencia):
         print("Ingrese los nuevos datos del producto (deje en blanco si no desea cambiarlo): ")
@@ -137,6 +155,7 @@ class ValidarDatosProductos:
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
+        self.categorias = {}
         self.buscador = buscadar
         self.alterar = alterar
     def agregar(self, datosp):
