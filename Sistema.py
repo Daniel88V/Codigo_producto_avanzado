@@ -230,8 +230,7 @@ class GestionCliente:
         self.clientes = {}
         self.buscador = buscadora
     def agregar_clientes(self, datos):
-        self.clientes[datos['NITC']] = Clientes(**datos)
-        print("Cliente agregado correctamente")
+        self.clientes[datos['NIT_Cliente']] = Clientes(**datos)
     def buscar_cliente(self, codigo):
         return self.buscador.buscar(self.clientes, codigo)
 class Visualizacion:
