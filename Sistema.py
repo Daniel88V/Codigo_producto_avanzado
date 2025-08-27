@@ -15,8 +15,8 @@ class Productos:
     def mostrar_producto(self):
         return f"Código: {self.codigo} | Nombre: {self.nombre} | Categoria: {self.categoria} | Precio: {self.precio} | Stock: {self.stock}"
 class Clientes:
-    def __init__(self, nit_cliente, nombre, direccion, telefono, correo):
-        self.NITC = nit_cliente
+    def __init__(self, NIT_Cliente, nombre, direccion, telefono, correo):
+        self.NITC = NIT_Cliente
         self.nombre = nombre
         self.direccion = direccion
         self.telefono = telefono
@@ -189,6 +189,14 @@ class GestionProductos:
         if producto:
             return self.alterar.editar(producto, datos)
         return False
+class GestionCliente:
+    def __init__(self, buscador):
+        self.clientes = {}
+        self.buscador = buscador
+    def agregar_clientes(self, datos):
+        self.clientes[datos['NITC']] = Clientes(**datos)
+        print("Cliente agregado correctamente")
+
 class Visualizacion:
     def __init__(self, gestor: GestionProductos, validar: ValidarDatosProductos, ordenar: OrdenadorProductos):
         self.gestor = gestor
