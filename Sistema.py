@@ -205,7 +205,6 @@ class ValidarDatosClientes:
             else:
                 break
         return {'NIT_Cliente': nit, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo}
-
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
