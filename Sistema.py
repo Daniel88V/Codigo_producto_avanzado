@@ -169,6 +169,42 @@ class ValidarDatosProductos:
                 return {'precio': nuevo_precio, 'stock': nuevo_stock}
             except ValueError:
                 print("Error. El precio y el stock deben de ser números")
+class ValidarDatosClientes:
+    @staticmethod
+    def validar_datosc(clientes_existentes):
+        while True:
+            nit = input("Ingrese el NIT del cliente: ")
+            if not nit:
+                return None
+            if nit in clientes_existentes:
+                print("Error. Este cliente ya existe")
+            else:
+                break
+        while True:
+            nombre = input("Ingrese el nombre del cliente: ")
+            if not nombre:
+                print("Advertencia. Este campo es requerido, por favor ingrese el nombre del cliente")
+            else:
+                break
+        while True:
+            direccion = input("Ingrese la dirección del cliente: ")
+            if not direccion:
+                print("Advertencia. Campo requerido, por favor ingrese la dirección del cliente")
+            else:
+                break
+        while True:
+            telefono = input("Ingrese el telefono del cliente: ")
+            if not telefono:
+                print("Advertencia. Campo requerido, por favor ingrese el telefono del cliente")
+            else:
+                break
+        while True:
+            correo = input("Ingrese la correo del cliente: ")
+            if not correo:
+                print("Advertencia. Campo requerido, por favor ingrese el correo del cliente")
+            else:
+                break
+        return {'NIT_Cliente': nit, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo}
 
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
