@@ -235,10 +235,17 @@ class GestionCliente:
     def buscar_cliente(self, codigo):
         return self.buscador.buscar(self.clientes, codigo)
 class Visualizacion:
-    def __init__(self, gestor: GestionProductos, validar: ValidarDatosProductos, ordenar: OrdenadorProductos):
+    def __init__(self,
+                 gestor: GestionProductos,
+                 validar: ValidarDatosProductos,
+                 ordenar: OrdenadorProductos,
+                 gestor_clientes: GestionCliente,
+                 validar_clientes: ValidarDatosClientes):
         self.gestor = gestor
         self.validador = validar
         self.ordenar = ordenar
+        self.gestor_clientes = gestor_clientes
+        self.validar_clientes = validar_clientes
     def menu(self):
         while True:
             print("======MENÚ PRINCIPAL======")
