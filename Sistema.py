@@ -169,6 +169,7 @@ class ValidarDatosProductos:
                 return {'precio': nuevo_precio, 'stock': nuevo_stock}
             except ValueError:
                 print("Error. El precio y el stock deben de ser números")
+
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
@@ -196,7 +197,8 @@ class GestionCliente:
     def agregar_clientes(self, datos):
         self.clientes[datos['NITC']] = Clientes(**datos)
         print("Cliente agregado correctamente")
-
+    def buscar_cliente(self, codigo):
+        return self.buscador.buscar(self.clientes, codigo)
 class Visualizacion:
     def __init__(self, gestor: GestionProductos, validar: ValidarDatosProductos, ordenar: OrdenadorProductos):
         self.gestor = gestor
