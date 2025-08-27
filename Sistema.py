@@ -264,6 +264,10 @@ class GestionCliente:
         self.clientes[datos['NIT_Cliente']] = Clientes(**datos)
     def buscar_cliente(self, codigo):
         return self.buscador.buscar(self.clientes, codigo)
+class GestionProveedores:
+    def __init__(self, buscadora: iBuscador):
+        self.proveedores = {}
+        self.buscador = buscadora
 class Visualizacion:
     def __init__(self,
                  gestor: GestionProductos,
