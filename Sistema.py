@@ -271,6 +271,16 @@ class GestionProveedores:
     def agregar_proveedor(self, datos):
         self.proveedores[datos['NIT_Proveedor']] = Proveedores(**datos)
         return True
+class GestionVentas:
+    def __init__(self, gestor_productos, gestor_clientes):
+        self.ventas = {}
+        self.detallesvemtas = {}
+        self.gestor_productos = gestor_productos
+        self.gestor_clientes = gestor_clientes
+        self.contador_v = 0
+        self.contador_det = 0
+    def registrar_venta(self, nit_cliente, id_empleado, detalles_compra):
+        print("Hola")
 class Visualizacion:
     def __init__(self,
                  gestor: GestionProductos,
