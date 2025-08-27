@@ -268,6 +268,9 @@ class GestionProveedores:
     def __init__(self, buscadora: iBuscador):
         self.proveedores = {}
         self.buscador = buscadora
+    def agregar_proveedor(self, datos):
+        self.proveedores[datos['NIT_Proveedor']] = Proveedores(**datos)
+        return True
 class Visualizacion:
     def __init__(self,
                  gestor: GestionProductos,
