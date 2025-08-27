@@ -41,7 +41,13 @@ class Proveedores:
         self.correo = correo
     def mostrar_proveedor(self):
         return f"NIT: {self.NITP} | Nombre: {self.nombre} | Dirección: {self.direccion}"
-
+class Compras:
+    def __init__(self, ID_Compra, FechaIngreso, ID_Empleado, NIT_Proveedor, Total):
+        self.ID_Compra = ID_Compra
+        self.FechaIngreso = FechaIngreso
+        self.ID_Empleado = ID_Empleado
+        self.NIT_Proveedor = NIT_Proveedor
+        self.Total = Total
 class iBuscador(ABC):
     @abstractmethod
     def buscar(self, registro, clave):
