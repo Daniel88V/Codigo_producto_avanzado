@@ -251,7 +251,8 @@ class Visualizacion:
             print("======MENÚ PRINCIPAL======")
             print("1. Gestionar categorias")
             print("2. Gestionar productos")
-            print("3. Salir")
+            print("3. Gestionar clientes")
+            print("4. Salir")
             try:
                 opcion = input("Ingrese una opción: ")
                 if opcion == "1":
@@ -259,6 +260,8 @@ class Visualizacion:
                 elif opcion == "2":
                     self.menu_productos()
                 elif opcion == "3":
+                    self.menu_clientes()
+                elif opcion == "4":
                     print("Saliendo...")
                     break
                 else:
