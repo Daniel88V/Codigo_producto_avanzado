@@ -226,9 +226,9 @@ class GestionProductos:
             return self.alterar.editar(producto, datos)
         return False
 class GestionCliente:
-    def __init__(self, buscador):
+    def __init__(self, buscadora: iBuscador):
         self.clientes = {}
-        self.buscador = buscador
+        self.buscador = buscadora
     def agregar_clientes(self, datos):
         self.clientes[datos['NITC']] = Clientes(**datos)
         print("Cliente agregado correctamente")
