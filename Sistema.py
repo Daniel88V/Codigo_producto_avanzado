@@ -24,14 +24,6 @@ class Clientes:
         self.correo = correo
     def mostrar_cliente(self):
         return f"NIT: {self.NITC} | Nombre: {self.nombre} | Dirección: {self.direccion} | Correo: {self.correo}"
-class Ventas:
-    def __init__(self, ID_Venta, fecha, ID_empleado, NIT_Cliente, total_venta, detalles_venta):
-        self.ID_Venta = ID_Venta
-        self.fecha = fecha
-        self.ID_empleado = ID_empleado
-        self.NIT_Cliente = NIT_Cliente
-        self.total_venta = total_venta
-        self.detalles_venta = detalles_venta
 class Proveedores:
     def __init__(self, NIT_Proveedor, nombre, direccion, telefono, correo):
         self.NITP = NIT_Proveedor
@@ -48,6 +40,28 @@ class Compras:
         self.ID_Empleado = ID_Empleado
         self.NIT_Proveedor = NIT_Proveedor
         self.Total = Total
+class Ventas:
+    def __init__(self, ID_Venta, Fecha, ID_Empleado, NIT_Cliente, Total):
+        self.ID_Venta = ID_Venta
+        self.Fecha = Fecha
+        self.ID_Empleado = ID_Empleado
+        self.NIT_Cliente = NIT_Cliente
+        self.Total = Total
+class DetalleVentas:
+    def __init__(self, ID_DetalleV, ID_Venta, ID_Producto, cantidad, subtotal):
+        self.ID_DetalleV = ID_DetalleV
+        self.ID_Venta = ID_Venta
+        self.ID_Producto = ID_Producto
+        self.cantidad = cantidad
+        self.subtotal = subtotal
+class DetalleCompras:
+    def __init__(self, ID_DetalleC, ID_Compra, ID_Producto, cantidad, precio_compra, fecha_caducidad):
+        self.ID_DetalleC = ID_DetalleC
+        self.ID_Compra = ID_Compra
+        self.ID_Producto = ID_Producto
+        self.cantidad = cantidad
+        self.precio_compra = precio_compra
+        self.fecha_caducidad = fecha_caducidad
 class iBuscador(ABC):
     @abstractmethod
     def buscar(self, registro, clave):
@@ -435,7 +449,6 @@ class Visualizacion:
             return
         for cliente in self.gestor_clientes.clientes.values():
             print(cliente.mostrar_cliente())
-
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
