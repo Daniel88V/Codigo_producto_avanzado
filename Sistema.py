@@ -25,13 +25,23 @@ class Clientes:
     def mostrar_cliente(self):
         return f"NIT: {self.NITC} | Nombre: {self.nombre} | Dirección: {self.direccion} | Correo: {self.correo}"
 class Ventas:
-    def __init__(self, ID_Venta, fecha, ID_empleado, NIT_Cliente, total, detalles_venta):
+    def __init__(self, ID_Venta, fecha, ID_empleado, NIT_Cliente, total_venta, detalles_venta):
         self.ID_Venta = ID_Venta
         self.fecha = fecha
         self.ID_empleado = ID_empleado
         self.NIT_Cliente = NIT_Cliente
-        self.total = total
+        self.total_venta = total_venta
         self.detalles_venta = detalles_venta
+class Proveedores:
+    def __init__(self, NIT_Proveedor, nombre, direccion, telefono, correo):
+        self.NITP = NIT_Proveedor
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        self.correo = correo
+    def mostrar_proveedor(self):
+        return f"NIT: {self.NITP} | Nombre: {self.nombre} | Dirección: {self.direccion}"
+
 class iBuscador(ABC):
     @abstractmethod
     def buscar(self, registro, clave):
