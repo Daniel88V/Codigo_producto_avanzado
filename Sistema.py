@@ -393,11 +393,40 @@ class Visualizacion:
                 print("\t Producto actualizado correctamente")
             else:
                 print("\t Error al editar el producto")
+    def menu_clientes(self):
+        while True:
+            print("------Menú clientes------")
+            print("1. Agregar cliente")
+            print("2. Listar clientes")
+            print("3. Salir")
+            opcion = input("Seleccione una opción: ")
+            if opcion == "1":
+                self.agregar_cliente()
+            elif opcion == "2":
+                self.listar_cliente()
+            elif opcion == "3":
+                print("Regresando...")
+                return
+            else:
+                print("Opción no valida")
+    def agregar_cliente(self):
+        datos = self.validar_clientes.validar_datosc(self.gestor_clientes.clientes)
+        self.gestor_clientes.agregar_clientes(datos)
+        print("Cliente agregado correctamente")
+    def listar_cliente(self):
+        if not self.gestor_clientes.clientes:
+            print("No se han agregado clientes")
+            return
+        for cliente in self.gestor_clientes.clientes.values():
+            print(cliente.mostrar_cliente())
+
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
     validador = ValidarDatosProductos()
+    validar_cliente =  ValidarDatosClientes()
     ordenador = OrdenadorProductos()
     gestionador = GestionProductos(buscador, modificador)
-    menu = Visualizacion(gestionador, validador, ordenador)
+    gestion_clientes = GestionCliente(buscador)
+    menu = Visualizacion(gestionador, validador, ordenador, gestion_clientes, validar_cliente)
     menu.menu()
