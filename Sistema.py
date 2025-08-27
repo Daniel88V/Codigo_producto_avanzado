@@ -14,6 +14,16 @@ class Productos:
         self.stock = stock
     def mostrar_producto(self):
         return f"Código: {self.codigo} | Nombre: {self.nombre} | Categoria: {self.categoria} | Precio: {self.precio} | Stock: {self.stock}"
+class Clientes:
+    def __init__(self, nit_cliente, nombre, direccion, telefono, correo):
+        self.NITC = nit_cliente
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        self.correo = correo
+    def mostrar_cliente(self):
+        return f"NIT: {self.NITC} | Nombre: {self.nombre} | Dirección: {self.direccion} | Correo: {self.correo}"
+
 class iBuscador(ABC):
     @abstractmethod
     def buscar(self, registro, clave):
