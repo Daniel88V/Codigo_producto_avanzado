@@ -295,6 +295,13 @@ class GestionVentas:
                 print(f"Error. No hay suficientes existencias del producto {producto.nombre}")
                 print(f"Cantidad disponible: {producto.stock}")
                 return False
+            subtotal = producto.precio * cantidad
+            total_venta += subtotal
+            producto.stock -= cantidad
+            self.contador_det += 1
+            id_detalle = f"DV{self.contador_v:04d}"
+            detalle = DetalleVentas(id_detalle, id_venta, codigo, cantidad, subtotal)
+            self.detallesvemtas[id_detalle] = detalle
 
 
 class Visualizacion:
