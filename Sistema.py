@@ -302,6 +302,12 @@ class GestionVentas:
             id_detalle = f"DV{self.contador_v:04d}"
             detalle = DetalleVentas(id_detalle, id_venta, codigo, cantidad, subtotal)
             self.detallesvemtas[id_detalle] = detalle
+        nueva_venta = Ventas(id_venta, fecha_venta, id_empleado, nit_cliente, total_venta)
+        self.ventas[id_venta] = nueva_venta
+        print(f"\n Venta {id_venta} agregada.")
+        print(f"Cliente: {nit_cliente} | Empleado: {id_empleado}")
+        print(f"Total: Q. {total_venta:.2f}")
+
 
 
 class Visualizacion:
