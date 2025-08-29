@@ -291,6 +291,10 @@ class GestionVentas:
             if not producto:
                 print(f"Error. No se encontró el producto {codigo}")
                 return False
+            if cantidad > producto.stock:
+                print(f"Error. No hay suficientes existencias del producto {producto.nombre}")
+                print(f"Cantidad disponible: {producto.stock}")
+                return False
 
 
 class Visualizacion:
