@@ -236,6 +236,42 @@ class ValidarDatosClientes:
             else:
                 break
         return {'NIT_Cliente': nit, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo}
+class ValidarDatosProveedores:
+    @staticmethod
+    def validar_datosproveedores(proveedores_existentes):
+        while True:
+            nit = input("Ingrese el NIT del proveedor: ")
+            if not nit:
+                print("Advertencia. Campo requerido, por favor ingrese el NIT del proveedor")
+            elif nit in proveedores_existentes:
+                print("Error. Este proveedor ya existe")
+            else:
+                break
+        while True:
+            nombre = input("Ingrese el nombre del proveedor: ")
+            if not nombre:
+                print("Advertencia. Campo requerido, por favor ingrese el nombre del proveedor")
+            else:
+                break
+        while True:
+            direccion = input("Ingrese la dirección del proveedor: ")
+            if not direccion:
+                print("Advertencia. Campo requerido, por favor ingrese la dirección del proveedor")
+            else:
+                break
+        while True:
+            telefono = input("Ingrese el telefono del proveedor: ")
+            if not telefono:
+                print("Advertencia. Campo requerido, por favor ingrese el telefono del proveedor")
+            else:
+                break
+        while True:
+            correo = input("Ingrese el correo del proveedor: ")
+            if not correo:
+                print("Advertencia. Campo requerido, por favor ingrese el correo del proveedor")
+            else:
+                break
+        return {'NIT_Proveedor': nit, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo}
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
