@@ -307,8 +307,11 @@ class GestionVentas:
         print(f"\n Venta {id_venta} agregada.")
         print(f"Cliente: {nit_cliente} | Empleado: {id_empleado}")
         print(f"Total: Q. {total_venta:.2f}")
-
-
+        for detalle in self.detallesvemtas.values():
+            if detalle.ID_Venta == id_venta:
+                producto_vendido = self.gestor_productos.buscar_producto(detalle.ID_Producto)
+                print(f"\t Producto: {producto_vendido.nombre} | Cantidad: {producto_vendido.cantidad} | Subtotal: {producto_vendido.subtotal:.2f}")
+        return True
 
 class Visualizacion:
     def __init__(self,
