@@ -279,8 +279,13 @@ class GestionVentas:
         self.gestor_clientes = gestor_clientes
         self.contador_v = 0
         self.contador_det = 0
-    def registrar_venta(self, nit_cliente, id_empleado, detalles_compra):
-        print("Hola")
+    def agregar_ventas(self, nit_cliente, id_empleado, detalles_compra):
+        self.contador_v += 1
+        id_venta = f"Venta_{self.contador_v:04d}"
+        fecha_venta = datetime.datetime.today()
+        total_venta = 0
+
+
 class Visualizacion:
     def __init__(self,
                  gestor: GestionProductos,
@@ -381,6 +386,7 @@ class Visualizacion:
                         datos = self.validador.validar_datosyagegar(self.gestor.productos, self.gestor.categorias)
                         if datos:
                             self.gestor.agregar_producto(datos)
+
                             print("Producto(s) agregado(s) correctamente")
                     return
             except ValueError:
