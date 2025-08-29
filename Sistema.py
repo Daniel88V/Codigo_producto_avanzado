@@ -411,7 +411,9 @@ class Visualizacion:
             print("1. Gestionar categorias")
             print("2. Gestionar productos")
             print("3. Gestionar clientes")
-            print("4. Salir")
+            print("4. Gestionar proveedores")
+            print("5. Gestionar compras y ventas")
+            print("6. Salir")
             try:
                 opcion = input("Ingrese una opción: ")
                 if opcion == "1":
@@ -579,6 +581,22 @@ class Visualizacion:
             return
         for cliente in self.gestor_clientes.clientes.values():
             print(cliente.mostrar_cliente())
+    def menu_proveedores(self):
+        print(f"\n------Menú Proveedores------")
+        print("1. Agregar proveedor")
+        print("2. Listar proveedors")
+        print("3. Salir")
+        opcion = input("Seleccione una opcion: ")
+        if opcion == "1":
+            self.agregar_proveedor()
+        elif opcion == "2":
+            self.listar_proveedor()
+        elif opcion == "3":
+            print("Regresando...")
+            return
+        else:
+            print("Opción no valida")
+
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
