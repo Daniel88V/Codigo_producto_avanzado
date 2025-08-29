@@ -596,6 +596,11 @@ class Visualizacion:
             return
         else:
             print("Opción no valida")
+    def agregar_proveedor(self):
+        datos = self.validar_proveedores.validar_datosproveedores(self.gestor_proveedores.proveedores)
+        if datos:
+            self.gestor_proveedores.agregar_proveedor(datos)
+            print("Proveedor agregado correctamente")
 
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
