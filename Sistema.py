@@ -312,6 +312,14 @@ class GestionVentas:
                 producto_vendido = self.gestor_productos.buscar_producto(detalle.ID_Producto)
                 print(f"\t Producto: {producto_vendido.nombre} | Cantidad: {producto_vendido.cantidad} | Subtotal: {producto_vendido.subtotal:.2f}")
         return True
+class GestionCompras:
+    def __init__(self, gestor_productos, gestor_proveedores):
+        self.compras = {}
+        self.detallecompras = {}
+        self.gestor_productos = gestor_productos
+        self.gestor_proveedores = gestor_proveedores
+        self.contador_compra = 0
+        self.contador_det = 0
 
 class Visualizacion:
     def __init__(self,
