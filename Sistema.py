@@ -335,6 +335,11 @@ class GestionCompras:
             precio_compra = i.get('precio_compra', producto.precio)
             fecha_caducidad = i.get("fecha_caducidad","N/A")
             total_compra += precio_compra * cantidad
+            producto.stock += cantidad
+            self.contador_det += 1
+            id_detalle = f"DetalleC{self.contador_compra:04d}"
+            detalle = DetalleCompras(id_detalle, id_compra, codigo, cantidad, precio_compra, fecha_caducidad)
+            self.detallecompras[id_compra] = detalle
 
 class Visualizacion:
     def __init__(self,
