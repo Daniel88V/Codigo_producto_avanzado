@@ -601,6 +601,12 @@ class Visualizacion:
         if datos:
             self.gestor_proveedores.agregar_proveedor(datos)
             print("Proveedor agregado correctamente")
+    def listar_proveedor(self):
+        if not self.gestor_proveedores.proveedores:
+            print("No se han encontrado proveedores. Primero agregue proveedores")
+            return
+        for proveedor in self.gestor_proveedores.proveedores.values():
+            print(proveedor.mostrar_proveedor())
 
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
