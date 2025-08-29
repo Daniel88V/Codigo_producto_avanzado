@@ -284,6 +284,13 @@ class GestionVentas:
         id_venta = f"Venta_{self.contador_v:04d}"
         fecha_venta = datetime.datetime.today()
         total_venta = 0
+        for i in detalles_compra:
+            codigo = i['codigo']
+            cantidad = i['cantidad']
+            producto = self.gestor_productos.buscar_producto(codigo)
+            if not producto:
+                print(f"Error. No se encontró el producto {codigo}")
+                return False
 
 
 class Visualizacion:
