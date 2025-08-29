@@ -623,6 +623,37 @@ class Visualizacion:
         else:
             print("Opción no valida")
     def agregar_venta(self):
+        nit_cliente = input("Ingrese el NIT del cliente (presione enter para cancelar): ").upper()
+        if not nit_cliente:
+            print("Operación cancelada")
+            return
+        cliente = self.gestor_clientes.buscar_cliente(nit_cliente)
+        if not cliente:
+            print("Cliente no encontrado")
+            nuevo_cliente = input("¿Desea agregar al cliente? (Si/No): ").upper()
+            if nuevo_cliente == "SI":
+                datos = self.validar_clientes.validar_datosc(self.gestor_clientes.clientes)
+                if datos:
+                    self.gestor_clientes.agregar_clientes(datos)
+                    print(f"Cliente {datos['nombre']} agregado correctamente")
+                else:
+                    print("Operación cancelada")
+                    return
+            else:
+                print("El cliente no será agregado")
+                nit_cliente = "CF"
+        detalles_venta = []
+        while True:
+            codigo = input("Ingrese el código del producto (enter para cancelar): ").upper()
+            if not codigo:
+                break
+            try:
+                cantidad = int(input("Ingrese  la cantidad a vender: "))
+                if cantidad <= 0:
+                    print("La cantidad no puede ser 0 o menor. Por favor corrija")
+                detalles_venta.append({'codigo': codigo, 'cantidad': cantidad})
+            except ValueError:
+                print("Error. La cantidad debe de ser un valor númerico positivo")
 
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
