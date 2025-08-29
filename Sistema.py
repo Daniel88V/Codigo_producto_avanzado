@@ -325,6 +325,12 @@ class GestionCompras:
         id_compra = f"Compra{self.contador_compra:04d}"
         fecha_compra = datetime.datetime.today()
         total_compra = 0
+        for i in detalles_compra:
+            codigo = i['codigo']
+            cantidad = i['cantidad']
+            producto = self.gestor_productos.buscar_producto(codigo)
+            if not producto:
+                print(f"Error. No se encontró el producto: {codigo}")
 
 class Visualizacion:
     def __init__(self,
