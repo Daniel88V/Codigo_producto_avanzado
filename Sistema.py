@@ -331,6 +331,10 @@ class GestionCompras:
             producto = self.gestor_productos.buscar_producto(codigo)
             if not producto:
                 print(f"Error. No se encontró el producto: {codigo}")
+                return False
+            precio_compra = i.get('precio_compra', producto.precio)
+            fecha_caducidad = i.get("fecha_caducidad","N/A")
+            total_compra += precio_compra * cantidad
 
 class Visualizacion:
     def __init__(self,
