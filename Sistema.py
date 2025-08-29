@@ -607,7 +607,11 @@ class Visualizacion:
             return
         for proveedor in self.gestor_proveedores.proveedores.values():
             print(proveedor.mostrar_proveedor())
-
+    def menu_venta_y_comprar(self):
+        print("\n Menú de ventas y compras")
+        print("1. Agregar venta")
+        print("2. Agregar compra")
+        print("3. Salir")
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
