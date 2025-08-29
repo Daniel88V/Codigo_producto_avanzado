@@ -340,7 +340,15 @@ class GestionCompras:
             id_detalle = f"DetalleC{self.contador_compra:04d}"
             detalle = DetalleCompras(id_detalle, id_compra, codigo, cantidad, precio_compra, fecha_caducidad)
             self.detallecompras[id_compra] = detalle
-
+        nueva_compra = Compras(id_compra, fecha_compra, id_empleado, nit_proveedor, total_compra)
+        self.compras[id_compra] = nueva_compra
+        print(f"\n Compra {id_compra} agregada.")
+        print(f"Proveedor: {nit_proveedor} | Empleado: {id_empleado} | Total: {total_compra:.2f}")
+        for detalle in self.detallecompras.values():
+            if detalle.ID_Compra == id_compra:
+                producto_compra = self.gestor_productos.buscar_producto(detalle.ID_Producto)
+                print(f"\t Producto: {producto_compra.nombre} | Cantidad: {detalle.cantidad} | Total: Q.{detalle.total_compra:.2f}")
+        return True
 class Visualizacion:
     def __init__(self,
                  gestor: GestionProductos,
