@@ -612,6 +612,18 @@ class Visualizacion:
         print("1. Agregar venta")
         print("2. Agregar compra")
         print("3. Salir")
+        opcion = input("Seleccione una opcion: ")
+        if opcion == "1":
+            self.agregar_venta()
+        elif opcion == "2":
+            self.agregar_compra()
+        elif opcion == "3":
+            print("Regresando...")
+            return
+        else:
+            print("Opción no valida")
+    def agregar_venta(self):
+
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
