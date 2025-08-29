@@ -391,12 +391,20 @@ class Visualizacion:
                  validar: ValidarDatosProductos,
                  ordenar: OrdenadorProductos,
                  gestor_clientes: GestionCliente,
-                 validar_clientes: ValidarDatosClientes):
+                 validar_clientes: ValidarDatosClientes,
+                 gestor_proveedores: GestionProveedores,
+                 validar_proveedores: ValidarDatosProveedores,
+                 gestor_ventas: GestionVentas,
+                 gestor_compras: GestionCompras,):
         self.gestor = gestor
         self.validador = validar
         self.ordenar = ordenar
         self.gestor_clientes = gestor_clientes
         self.validar_clientes = validar_clientes
+        self.gestor_proveedores = gestor_proveedores
+        self.validar_proveedores = validar_proveedores
+        self.gestor_ventas = gestor_ventas
+        self.gestor_compras = gestor_compras
     def menu(self):
         while True:
             print("======MENÚ PRINCIPAL======")
