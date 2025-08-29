@@ -299,7 +299,7 @@ class GestionVentas:
             total_venta += subtotal
             producto.stock -= cantidad
             self.contador_det += 1
-            id_detalle = f"DV{self.contador_v:04d}"
+            id_detalle = f"DetalleV{self.contador_v:04d}"
             detalle = DetalleVentas(id_detalle, id_venta, codigo, cantidad, subtotal)
             self.detallesvemtas[id_detalle] = detalle
         nueva_venta = Ventas(id_venta, fecha_venta, id_empleado, nit_cliente, total_venta)
@@ -320,6 +320,11 @@ class GestionCompras:
         self.gestor_proveedores = gestor_proveedores
         self.contador_compra = 0
         self.contador_det = 0
+    def agregar_compra(self, nit_proveedor, id_empleado, detalles_compra):
+        self.contador_compra += 1
+        id_compra = f"Compra{self.contador_compra:04d}"
+        fecha_compra = datetime.datetime.today()
+        total_compra = 0
 
 class Visualizacion:
     def __init__(self,
