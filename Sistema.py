@@ -654,6 +654,8 @@ class Visualizacion:
                 detalles_venta.append({'codigo': codigo, 'cantidad': cantidad})
             except ValueError:
                 print("Error. La cantidad debe de ser un valor númerico positivo")
+        if detalles_venta:
+            self.gestor_ventas.agregar_ventas(nit_cliente, detalles_venta)
 
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
