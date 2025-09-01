@@ -307,6 +307,8 @@ class GestionProveedores:
     def agregar_proveedor(self, datos):
         self.proveedores[datos['NIT_Proveedor']] = Proveedores(**datos)
         return True
+    def buscar_proveedor(self, nit_proveedor):
+        self.buscador.buscar(self.proveedores, nit_proveedor)
 class GestionVentas:
     def __init__(self, gestor_productos, gestor_clientes):
         self.ventas = {}
