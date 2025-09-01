@@ -290,6 +290,15 @@ class ValidarDatosProveedores:
             else:
                 break
         return {'NIT_Proveedor': nit, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo}
+class ValidarDatosEmpleados:
+    @staticmethod
+    def validar_datesEmpleados(empleados_existentes):
+        while True:
+            id_empleado = input("Ingrese el ID del empleado: ").upper()
+            if not id_empleado:
+                print("Advertencia. Campo requerido, por favor agregue el ID del empleado")
+            elif id_empleado in empleados_existentes:
+                print("Error. Este empleado ya existe")
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
