@@ -33,6 +33,16 @@ class Proveedores:
         self.correo = correo
     def mostrar_proveedor(self):
         return f"NIT: {self.NITP} | Nombre: {self.nombre} | Dirección: {self.direccion}"
+class Empleados:
+    def __init__(self, ID_Empleado, nombre, direccion, telefono, correo, puesto):
+        self.ID_Empleado = ID_Empleado
+        self.nombre = nombre
+        self.direccion = direccion
+        self.telefono = telefono
+        self.correo = correo
+        self.puesto = puesto
+    def mostrar_empleado(self):
+        return f"ID: {self.ID_Empleado} | Nombre: {self.nombre} | Puesto: {self.puesto}"
 class Compras:
     def __init__(self, ID_Compra, FechaIngreso, ID_Empleado, NIT_Proveedor, Total):
         self.ID_Compra = ID_Compra
