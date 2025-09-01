@@ -292,7 +292,7 @@ class ValidarDatosProveedores:
         return {'NIT_Proveedor': nit, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo}
 class ValidarDatosEmpleados:
     @staticmethod
-    def validar_datesEmpleados(empleados_existentes):
+    def validar_datesempleados(empleados_existentes):
         while True:
             id_empleado = input("Ingrese el ID del empleado: ").upper()
             if not id_empleado:
@@ -465,6 +465,8 @@ class Visualizacion:
                  validar_clientes: ValidarDatosClientes,
                  gestor_proveedores: GestionProveedores,
                  validador_proveedores: ValidarDatosProveedores,
+                 gestor_empleados: GestionEmpleados,
+                 validador_empleados: ValidarDatosEmpleados,
                  gestor_ventas: GestionVentas,
                  gestor_compras: GestionCompras,):
         self.gestor = gestor
@@ -474,6 +476,8 @@ class Visualizacion:
         self.validar_clientes = validar_clientes
         self.gestor_proveedores = gestor_proveedores
         self.validar_proveedores = validador_proveedores
+        self.gestor_empleados = gestor_empleados
+        self.validador_empleados = validador_empleados
         self.gestor_ventas = gestor_ventas
         self.gestor_compras = gestor_compras
     def menu(self):
@@ -786,10 +790,12 @@ if __name__ == "__main__":
     validacion_productos = ValidarDatosProductos()
     validacion_clientes = ValidarDatosClientes()
     validacion_proveedores = ValidarDatosProveedores()
+    validaccion_empleados = ValidarDatosEmpleados()
     gestion_productos = GestionProductos(buscador, modificador)
     gestion_clientes = GestionCliente(buscador)
     gestion_proveedores = GestionProveedores(buscador)
+    gestion_empleados = GestionEmpleados(buscador)
     gestion_ventas = GestionVentas(gestion_productos, gestion_clientes)
     gestion_compras = GestionCompras(gestion_productos, gestion_proveedores)
-    menu = Visualizacion(gestion_productos, validacion_productos, ordenamiento, gestion_clientes, validacion_clientes, gestion_proveedores, validacion_proveedores, gestion_ventas, gestion_compras)
+    menu = Visualizacion(gestion_productos, validacion_productos, ordenamiento, gestion_clientes, validacion_clientes, gestion_proveedores, validacion_proveedores, gestion_empleados, validaccion_empleados, gestion_ventas, gestion_compras)
     menu.menu()
