@@ -397,7 +397,7 @@ class Visualizacion:
                  gestor_proveedores: GestionProveedores,
                  validador_proveedores: ValidarDatosProveedores,
                  gestor_ventas: GestionVentas,
-                 gestionador_compras: GestionCompras,):
+                 gestor_compras: GestionCompras,):
         self.gestor = gestor
         self.validador = validar
         self.ordenar = ordenar
@@ -406,7 +406,7 @@ class Visualizacion:
         self.gestor_proveedores = gestor_proveedores
         self.validar_proveedores = validador_proveedores
         self.gestor_ventas = gestor_ventas
-        self.gestor_compras = gestionador_compras
+        self.gestor_compras = gestor_compras
     def menu(self):
         while True:
             print("======MENÚ PRINCIPAL======")
@@ -713,14 +713,14 @@ class Visualizacion:
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
-    validador = ValidarDatosProductos()
-    validar_cliente =  ValidarDatosClientes()
-    ordenador = OrdenadorProductos()
-    gestionador = GestionProductos(buscador, modificador)
+    ordenamiento = OrdenadorProductos()
+    validacion_productos = ValidarDatosProductos()
+    validacion_clientes = ValidarDatosClientes()
+    validacion_proveedores = ValidarDatosProveedores()
+    gestion_productos = GestionProductos(buscador, modificador)
     gestion_clientes = GestionCliente(buscador)
-    validar_proveedores = ValidarDatosProveedores()
     gestion_proveedores = GestionProveedores(buscador)
-    gestion_ventas = GestionVentas(gestionador, gestion_clientes)
-    gestion_compras = GestionCompras(gestionador, gestion_proveedores)
-    menu = Visualizacion(gestionador, validador, ordenador, gestion_clientes, validar_cliente, gestion_proveedores, gestion_ventas, gestion_compras)
+    gestion_ventas = GestionVentas(gestion_productos, gestion_clientes)
+    gestion_compras = GestionCompras(gestion_productos, gestion_proveedores)
+    menu = Visualizacion(gestion_productos, validacion_productos, ordenamiento, gestion_clientes, validacion_clientes, gestion_proveedores, validacion_proveedores, gestion_ventas, gestion_compras)
     menu.menu()
