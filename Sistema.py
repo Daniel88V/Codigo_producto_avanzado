@@ -219,7 +219,7 @@ class ValidarDatosClientes:
     @staticmethod
     def validar_datosc(clientes_existentes):
         while True:
-            nit = input("Ingrese el NIT del cliente: ")
+            nit = input("Ingrese el NIT del cliente: ").upper()
             if not nit:
                 return None
             if nit in clientes_existentes:
@@ -255,7 +255,7 @@ class ValidarDatosProveedores:
     @staticmethod
     def validar_datosproveedores(proveedores_existentes):
         while True:
-            nit = input("Ingrese el NIT del proveedor: ")
+            nit = input("Ingrese el NIT del proveedor: ").upper()
             if not nit:
                 print("Advertencia. Campo requerido, por favor ingrese el NIT del proveedor")
             elif nit in proveedores_existentes:
