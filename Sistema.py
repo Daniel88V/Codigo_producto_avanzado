@@ -662,6 +662,11 @@ class Visualizacion:
             self.gestor_ventas.agregar_ventas(nit_cliente, id_empleado,detalles_venta)
         else:
             print("Venta cancelada")
+    def agregar_compra(self):
+        nit_proveedor = input("Ingrese el nit del proveedor: ").upper()
+        if not nit_proveedor:
+            print("Campo requerido. Cancelando compra")
+            return
 
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
