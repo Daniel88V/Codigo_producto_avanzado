@@ -414,7 +414,7 @@ class GestionVentas:
         for detalle in self.detallesvemtas.values():
             if detalle.ID_Venta == id_venta:
                 producto_vendido = self.gestor_productos.buscar_producto(detalle.ID_Producto)
-                print(f"\t Producto: {producto_vendido.nombre} | Cantidad: {producto_vendido.cantidad} | Subtotal: {producto_vendido.subtotal:.2f}")
+                print(f"\t Producto: {producto_vendido.nombre} | Cantidad: {detalle.cantidad} | Subtotal: {detalle.subtotal:.2f}")
         return True
 class GestionCompras:
     def __init__(self, gestor_productos, gestor_proveedores):
@@ -750,13 +750,22 @@ class Visualizacion:
             codigo = input("Ingrese el código del producto (enter para cancelar): ").upper()
             if not codigo:
                 break
-            try:
-                cantidad = int(input("Ingrese  la cantidad a vender: "))
-                if cantidad <= 0:
-                    print("La cantidad no puede ser 0 o menor. Por favor corrija")
-                detalles_venta.append({'codigo': codigo, 'cantidad': cantidad})
-            except ValueError:
-                print("Error. La cantidad debe de ser un valor númerico positivo")
+            while True:
+                producto = self.gestor.buscar_producto(codigo)
+                if not producto:
+                    print("Producto no encontrado. Intente de nuevo")
+                else:
+                    break
+            while True:
+                try:
+                    cantidad = int(input("Ingrese la cantidad del producto: "))
+                    if cantidad <= 0:
+                        print("La cantidad a vender no puede ser menor a 0")
+                    else:
+                        break
+                except ValueError:
+                    print("Error. La cantidad debe de ser un valor númerico valido")
+            detalles_venta.append({'codigo': codigo, 'cantidad': cantidad})
         if detalles_venta:
             self.gestor_ventas.agregar_ventas(nit_cliente, id_empleado,detalles_venta)
         else:
