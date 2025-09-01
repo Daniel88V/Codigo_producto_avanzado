@@ -669,7 +669,21 @@ class Visualizacion:
         if not nit_proveedor:
             print("Campo requerido. Cancelando compra")
             return
-        proveedor = self.gestor_proveedores.buscar
+        proveedor = self.gestor_proveedores.buscar_proveedor(nit_proveedor)
+        if not proveedor:
+            print("Proveedor no encontrado")
+            return
+        id_empleado = input("Ingrese el Id del empleado que realiza la compra: ")
+        if not id_empleado:
+            print("Campo requerido. Cancelando compra")
+            return
+        detalles_compra = []
+        while True:
+            codigo = input("Ingrese el código del producto a comprar (presione enter para cancelar): ").upper()
+            if codigo == "":
+                break
+            producto = self.gestor.buscar_producto(codigo)
+            if not producto:
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
