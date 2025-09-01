@@ -299,6 +299,39 @@ class ValidarDatosEmpleados:
                 print("Advertencia. Campo requerido, por favor agregue el ID del empleado")
             elif id_empleado in empleados_existentes:
                 print("Error. Este empleado ya existe")
+            else:
+                break
+        while True:
+            nombre = input("Ingrese el nombre del empleado: ")
+            if not nombre:
+                print("Advertencia. Campo requerido, por favor ingrese el nombre del empleado")
+            else:
+                break
+        while True:
+            direccion = input("Ingrese la dirección del empleado: ")
+            if not direccion:
+                print("Advertencia. Campo requerido, por favor ingrese la dirección del empleado")
+            else:
+                break
+        while True:
+            telefono = input("Ingrese el telefono del empleado: ")
+            if not telefono:
+                print("Advertencia. Campo requerido, por favor ingrese el número del empleado")
+            else:
+                break
+        while True:
+            correo = input("Ingrese el correo del empleado: ")
+            if not correo:
+                print("Advertencia. Campo requerido, por favor ingrese el correo del empleado")
+            else:
+                break
+        while True:
+            puesto = input("Ingrese la puesto del empleado: ")
+            if not puesto:
+                print("Advertencia. Campo requerido, por favor ingrese el puesto del empleado")
+            else:
+                break
+        return {'ID_Empleado': id_empleado, 'nombre': nombre, 'direccion': direccion, 'telefono': telefono, 'correo': correo, 'puesto': puesto}
 class GestionProductos:
     def __init__(self, buscadar: iBuscador, alterar: iAlterarProducto):
         self.productos = {}
@@ -336,6 +369,15 @@ class GestionProveedores:
         return True
     def buscar_proveedor(self, nit_proveedor):
         return self.buscador.buscar(self.proveedores, nit_proveedor)
+class GestionEmpleados:
+    def __init__(self, buscadora: iBuscador):
+        self.empleados = {}
+        self.buscador = buscadora
+    def agregar_empleado(self, datos):
+        self.empleados[datos['ID_Empleado']] = Empleados(**datos)
+        return True
+    def buscar_empleado(self, id_empleado):
+        return self.buscador.buscar(self.empleados, id_empleado)
 class GestionVentas:
     def __init__(self, gestor_productos, gestor_clientes):
         self.ventas = {}
