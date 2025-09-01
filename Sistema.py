@@ -395,18 +395,18 @@ class Visualizacion:
                  gestor_clientes: GestionCliente,
                  validar_clientes: ValidarDatosClientes,
                  gestor_proveedores: GestionProveedores,
-                 validar_proveedores: ValidarDatosProveedores,
+                 validador_proveedores: ValidarDatosProveedores,
                  gestor_ventas: GestionVentas,
-                 gestor_compras: GestionCompras,):
+                 gestionador_compras: GestionCompras,):
         self.gestor = gestor
         self.validador = validar
         self.ordenar = ordenar
         self.gestor_clientes = gestor_clientes
         self.validar_clientes = validar_clientes
         self.gestor_proveedores = gestor_proveedores
-        self.validar_proveedores = validar_proveedores
+        self.validar_proveedores = validador_proveedores
         self.gestor_ventas = gestor_ventas
-        self.gestor_compras = gestor_compras
+        self.gestor_compras = gestionador_compras
     def menu(self):
         while True:
             print("======MENÚ PRINCIPAL======")
@@ -682,8 +682,34 @@ class Visualizacion:
             codigo = input("Ingrese el código del producto a comprar (presione enter para cancelar): ").upper()
             if codigo == "":
                 break
-            producto = self.gestor.buscar_producto(codigo)
-            if not producto:
+            while True:
+                producto = self.gestor.buscar_producto(codigo)
+                if not producto:
+                    print("Producto no encontrado. Intente de nuevo")
+                else:
+                    break
+            try:
+                while True:
+                    cantidad = int(input(f"Ingrese la cantidad de {producto.nombre} que desea comprar: "))
+                    if cantidad <= 0:
+                        print("Advertencia. La cantidad a comprar no puede ser negativa o 0")
+                    else:
+                        break
+                precio_compra = float(input("Ingrese el precio de compra: "))
+                fecha_caducidad = input("Ingrese la fecha de caducidad (DD/MM/AAAA): ")
+                detalles_compra.append({
+                    'codigo': codigo,
+                    'cantidad': cantidad,
+                    'precio_compra': precio_compra,
+                    'fecha_caducidad': fecha_caducidad,
+                })
+            except ValueError:
+                print("Cantidad o precios invalidos")
+                continue
+        if detalles_compra:
+            self.gestor_compras.agregar_compra(nit_proveedor, id_empleado, detalles_compra)
+        else:
+            print("Campos no requeridos. Cancelando compra")
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
@@ -692,5 +718,9 @@ if __name__ == "__main__":
     ordenador = OrdenadorProductos()
     gestionador = GestionProductos(buscador, modificador)
     gestion_clientes = GestionCliente(buscador)
-    menu = Visualizacion(gestionador, validador, ordenador, gestion_clientes, validar_cliente)
+    validar_proveedores = ValidarDatosProveedores()
+    gestion_proveedores = GestionProveedores(buscador)
+    gestion_ventas = GestionVentas(gestionador, gestion_clientes)
+    gestion_compras = GestionCompras(gestionador, gestion_proveedores)
+    menu = Visualizacion(gestionador, validador, ordenador, gestion_clientes, validar_cliente, gestion_proveedores, gestion_ventas, gestion_compras)
     menu.menu()
