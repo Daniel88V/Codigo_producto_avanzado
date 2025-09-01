@@ -76,7 +76,13 @@ class iAlterarProducto(ABC):
 class BusquedaSecuencial(iBuscador):
     def buscar(self, registro, clave):
         for cosa in registro.values():
-            if cosa.codigo.upper() == clave.upper():
+            if hasattr(cosa, 'codigo') and cosa.codigo.upper() == clave.upper():
+                return cosa
+            if hasattr(cosa, 'NITC') and cosa.NITC.upper() == clave.upper():
+                return cosa
+            if hasattr(cosa, 'ID') and cosa.ID.upper() == clave.upper():
+                return cosa
+            if hasattr(cosa, 'NITP') and cosa.NITC.upper() == clave.upper():
                 return cosa
         return None
 class AlterarProducto(iAlterarProducto):
@@ -308,7 +314,7 @@ class GestionProveedores:
         self.proveedores[datos['NIT_Proveedor']] = Proveedores(**datos)
         return True
     def buscar_proveedor(self, nit_proveedor):
-        self.buscador.buscar(self.proveedores, nit_proveedor)
+        return self.buscador.buscar(self.proveedores, nit_proveedor)
 class GestionVentas:
     def __init__(self, gestor_productos, gestor_clientes):
         self.ventas = {}
