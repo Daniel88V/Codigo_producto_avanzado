@@ -94,6 +94,8 @@ class BusquedaSecuencial(iBuscador):
                 return cosa
             if hasattr(cosa, 'NITP') and cosa.NITC.upper() == clave.upper():
                 return cosa
+            if hasattr(cosa, 'ID_Empleado') and cosa.ID_Empleado.upper() == clave.upper():
+                return cosa
         return None
 class AlterarProducto(iAlterarProducto):
     def eliminar(self, registro, clave):
