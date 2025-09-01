@@ -342,7 +342,7 @@ class GestionVentas:
         self.ventas[id_venta] = nueva_venta
         print(f"\n Venta {id_venta} agregada.")
         print(f"Cliente: {nit_cliente} | Empleado: {id_empleado}")
-        print(f"Total: Q. {total_venta:.2f}")
+        print(f"Total: Q.{total_venta:.2f}")
         for detalle in self.detallesvemtas.values():
             if detalle.ID_Venta == id_venta:
                 producto_vendido = self.gestor_productos.buscar_producto(detalle.ID_Producto)
@@ -423,8 +423,9 @@ class Visualizacion:
                 elif opcion == "3":
                     self.menu_clientes()
                 elif opcion == "4":
-                    print("Saliendo...")
-                    break
+                    self.menu_proveedores()
+                elif opcion == "5":
+                    self.menu_venta_y_comprar()
                 else:
                     print("Opción no valida, intente de nuevo")
             except ValueError:
@@ -495,7 +496,6 @@ class Visualizacion:
                         datos = self.validador.validar_datosyagegar(self.gestor.productos, self.gestor.categorias)
                         if datos:
                             self.gestor.agregar_producto(datos)
-
                             print("Producto(s) agregado(s) correctamente")
                     return
             except ValueError:
@@ -642,6 +642,10 @@ class Visualizacion:
             else:
                 print("El cliente no será agregado")
                 nit_cliente = "CF"
+        id_empleado = input("Ingrese el Id del empleado realizando la venta: ").upper()
+        if not id_empleado:
+            print("Venta cancelada. Se require el ID del empleado")
+            return
         detalles_venta = []
         while True:
             codigo = input("Ingrese el código del producto (enter para cancelar): ").upper()
@@ -655,7 +659,9 @@ class Visualizacion:
             except ValueError:
                 print("Error. La cantidad debe de ser un valor númerico positivo")
         if detalles_venta:
-            self.gestor_ventas.agregar_ventas(nit_cliente, detalles_venta)
+            self.gestor_ventas.agregar_ventas(nit_cliente, id_empleado,detalles_venta)
+        else:
+            print("Venta cancelada")
 
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
