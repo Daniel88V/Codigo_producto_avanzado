@@ -667,7 +667,7 @@ class Visualizacion:
         if not nit_proveedor:
             print("Campo requerido. Cancelando compra")
             return
-
+        proveedor = self.gestor_proveedores.buscar
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
