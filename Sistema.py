@@ -105,7 +105,6 @@ class AlterarProducto(iAlterarProducto):
         return False
     def editar(self, producto, dato):
         producto.precio = dato["precio"]
-        producto.stock = dato["stock"]
         return True
 class OrdenadorProductos:
     def quicks_nombre(self, lista):
@@ -209,15 +208,13 @@ class ValidarDatosProductos:
         while True:
             try:
                 precio = input(f"Ingrese el nuevo precio del producto {existencia.precio}: ")
-                stock = input(f"Ingrese el nuevo stock del producto {existencia.stock}: ")
                 nuevo_precio = float(precio) if precio else existencia.precio
-                nuevo_stock = int(stock) if stock else existencia.stock
-                if nuevo_precio <= 0 or nuevo_stock < 0:
-                    print("Advertencia. El precio o el stock no pueden ser valores negativos o 0")
+                if nuevo_precio <= 0:
+                    print("Advertencia. El precio no puede ser un valor negativo o 0")
                     return None
-                return {'precio': nuevo_precio, 'stock': nuevo_stock}
+                return {'precio': nuevo_precio}
             except ValueError:
-                print("Error. El precio y el stock deben de ser números")
+                print("Error. El precio debe de ser números")
 class ValidarDatosClientes:
     @staticmethod
     def validar_datosc(clientes_existentes):
