@@ -682,6 +682,33 @@ class Visualizacion:
             return
         for proveedor in self.gestor_proveedores.proveedores.values():
             print(proveedor.mostrar_proveedor())
+    def menu_empleados(self):
+        while True:
+            print(f"\n------Menú Empleados------")
+            print("1. Agregar empleado")
+            print("2. Listar empleados")
+            print("3. Regresar")
+            opcion = input("Seleccione una opcion: ")
+            if opcion == "1":
+                self.agregar_empleado()
+            elif opcion == "2":
+                self.listar_empleado()
+            elif opcion == "3":
+                print("Regresando...")
+                return
+            else:
+                print("Opción no valida")
+    def agregar_empleado(self):
+        datos = self.validador_empleados.validar_datesempleados(self.gestor_empleados.empleados)
+        if datos:
+            self.gestor_empleados.agregar_empleado(datos)
+            print("Empleado agregado correctamente.")
+    def listar_empleado(self):
+        if not self.gestor_empleados.empleados:
+            print("No se han encontrado empleados. Por favor, agregue uno primero.")
+            return
+        for empleado in self.gestor_empleados.empleados.values():
+            print(empleado.mostrar_empleado())
     def menu_venta_y_comprar(self):
         print("\n Menú de ventas y compras")
         print("1. Agregar venta")
