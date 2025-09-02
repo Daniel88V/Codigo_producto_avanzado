@@ -92,7 +92,7 @@ class BusquedaSecuencial(iBuscador):
                 return cosa
             if hasattr(cosa, 'ID') and cosa.ID.upper() == clave.upper():
                 return cosa
-            if hasattr(cosa, 'NITP') and cosa.NITC.upper() == clave.upper():
+            if hasattr(cosa, 'NITP') and cosa.NITP.upper() == clave.upper():
                 return cosa
             if hasattr(cosa, 'ID_Empleado') and cosa.ID_Empleado.upper() == clave.upper():
                 return cosa
@@ -416,6 +416,8 @@ class GestionVentas:
                 producto_vendido = self.gestor_productos.buscar_producto(detalle.ID_Producto)
                 print(f"\t Producto: {producto_vendido.nombre} | Cantidad: {detalle.cantidad} | Subtotal: {detalle.subtotal:.2f}")
         return True
+    def registro_ventas(self):
+        return self.ventas
 class GestionCompras:
     def __init__(self, gestor_productos, gestor_proveedores):
         self.compras = {}
@@ -485,7 +487,9 @@ class Visualizacion:
             print("3. Gestionar clientes")
             print("4. Gestionar proveedores")
             print("5. Gestionar compras y ventas")
-            print("6. Salir")
+            print("6. Gestionar empleados")
+            print("7. Menu registros")
+            print("7. Salir")
             try:
                 opcion = input("Ingrese una opción: ")
                 if opcion == "1":
@@ -498,6 +502,10 @@ class Visualizacion:
                     self.menu_proveedores()
                 elif opcion == "5":
                     self.menu_venta_y_comprar()
+                elif opcion == "6":
+                    self.menu_empleados()
+                elif opcion == "7":
+                    self.menu_registros()
                 else:
                     print("Opción no valida, intente de nuevo")
             except ValueError:
@@ -816,6 +824,16 @@ class Visualizacion:
             self.gestor_compras.agregar_compra(nit_proveedor, id_empleado, detalles_compra)
         else:
             print("Campos no requeridos. Cancelando compra")
+    def menu_registros(self):
+        print("1. Registros ventas")
+        print("2. Salir")
+        opcion = input("Seleccione una opcion")
+        if opcion == "1":
+            print(self.mostrar_registro_v())
+        elif opcion == "2":
+            return
+    def mostrar_registro_v(self):
+        self.gestor_ventas.registro_ventas()
 if __name__ == "__main__":
     buscador = BusquedaSecuencial()
     modificador = AlterarProducto()
